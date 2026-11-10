@@ -1,0 +1,90 @@
+
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Available Events</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <h2>Welcome to Event Ticketing!</h2>
+
+  <ion-button
+    expand="block"
+    routerLink="/my-bookings">
+    My Bookings
+  </ion-button>
+
+  <ion-button
+    expand="block"
+    fill="outline"
+    (click)="loadEvents()">
+    Refresh Events
+  </ion-button>
+
+  <ion-button
+    expand="block"
+    color="danger"
+    (click)="logout()">
+    Logout
+  </ion-button>
+
+  <p *ngIf="errorMessage" class="ion-text-center">
+    {{ errorMessage }}
+  </p>
+
+  <div *ngIf="!errorMessage && events.length === 0">
+    <p>No events are currently available.</p>
+  </div>
+
+  <ion-card *ngFor="let event of events">
+
+    <ion-card-header>
+      <ion-card-title>
+        {{ event.eventName }}
+      </ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+
+      <p>{{ event.description }}</p>
+
+      <p>
+        <strong>Venue:</strong>
+        {{ event.venue }}
+      </p>
+
+      <p>
+        <strong>Start:</strong>
+        {{ event.startDateTime | date:'medium' }}
+      </p>
+
+      <p>
+        <strong>End:</strong>
+        {{ event.endDateTime | date:'medium' }}
+      </p>
+
+      <p>
+        <strong>Ticket Price:</strong>
+        ₱{{ event.ticketPrice }}
+      </p>
+
+      <p>
+        <strong>Available Tickets:</strong>
+        {{ event.availableTickets }}
+      </p>
+
+      <ion-badge>{{ event.status }}</ion-badge>
+
+      <ion-button
+        expand="block"
+        [disabled]="event.status !== 'Upcoming' || event.availableTickets <= 0"
+        (click)="viewDetails(event.eventId)">
+        View Details / Book
+      </ion-button>
+
+    </ion-card-content>
+
+  </ion-card>
+
+</ion-content>

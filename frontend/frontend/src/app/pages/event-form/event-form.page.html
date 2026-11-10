@@ -1,0 +1,134 @@
+
+<ion-header>
+  <ion-toolbar>
+
+    <ion-buttons slot="start">
+      <ion-button routerLink="/events">
+        Back
+      </ion-button>
+    </ion-buttons>
+
+    <ion-title>
+      {{ isEditMode ? 'Edit Event' : 'Add New Event' }}
+    </ion-title>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <h2>
+    {{ isEditMode ? 'Update Event Information' : 'Create Event' }}
+  </h2>
+
+  <ion-item>
+    <ion-input
+      label="Event Name"
+      labelPlacement="stacked"
+      placeholder="Enter event name"
+      [(ngModel)]="event.eventName">
+    </ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-textarea
+      label="Description"
+      labelPlacement="stacked"
+      placeholder="Enter event description"
+      rows="4"
+      [(ngModel)]="event.description">
+    </ion-textarea>
+  </ion-item>
+
+  <ion-item>
+    <ion-input
+      label="Venue"
+      labelPlacement="stacked"
+      placeholder="Enter event venue"
+      [(ngModel)]="event.venue">
+    </ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-input
+      label="Start Date and Time"
+      labelPlacement="stacked"
+      type="datetime-local"
+      [(ngModel)]="event.startDateTime">
+    </ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-input
+      label="End Date and Time"
+      labelPlacement="stacked"
+      type="datetime-local"
+      [(ngModel)]="event.endDateTime">
+    </ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-input
+      label="Ticket Price (₱)"
+      labelPlacement="stacked"
+      type="number"
+      min="0"
+      [(ngModel)]="event.ticketPrice">
+    </ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-input
+      label="Available Tickets"
+      labelPlacement="stacked"
+      type="number"
+      min="0"
+      [(ngModel)]="event.availableTickets">
+    </ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-select
+      label="Event Status"
+      labelPlacement="stacked"
+      [(ngModel)]="event.status">
+
+      <ion-select-option value="Upcoming">
+        Upcoming
+      </ion-select-option>
+
+      <ion-select-option value="Ongoing">
+        Ongoing
+      </ion-select-option>
+
+      <ion-select-option value="Completed">
+        Completed
+      </ion-select-option>
+
+      <ion-select-option value="Cancelled">
+        Cancelled
+      </ion-select-option>
+
+    </ion-select>
+  </ion-item>
+
+  <ion-button
+    expand="block"
+    class="ion-margin-top"
+    (click)="saveEvent()">
+
+    {{ isEditMode ? 'Update Event' : 'Save Event' }}
+
+  </ion-button>
+
+  <ion-button
+    expand="block"
+    fill="outline"
+    color="medium"
+    routerLink="/events">
+
+    Cancel
+
+  </ion-button>
+
+</ion-content>

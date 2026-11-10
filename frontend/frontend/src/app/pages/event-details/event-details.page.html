@@ -1,0 +1,102 @@
+
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Event Details</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <!-- BACK BUTTON -->
+  <ion-button fill="clear" routerLink="/customer-home">
+    Back to Events
+  </ion-button>
+
+  <!-- ERROR MESSAGE -->
+  <ion-text color="danger" *ngIf="errorMessage">
+    <p>{{ errorMessage }}</p>
+  </ion-text>
+
+  <!-- EVENT DETAILS -->
+  <ion-card *ngIf="event">
+
+    <ion-card-header>
+      <ion-card-title>
+        {{ event.eventName }}
+      </ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+
+      <p>{{ event.description }}</p>
+
+      <p>
+        <strong>Venue:</strong>
+        {{ event.venue }}
+      </p>
+
+      <p>
+        <strong>Starts:</strong>
+        {{ event.startDateTime | date:'medium' }}
+      </p>
+
+      <p>
+        <strong>Ends:</strong>
+        {{ event.endDateTime | date:'medium' }}
+      </p>
+
+      <p>
+        <strong>Ticket Price:</strong>
+        ₱{{ event.ticketPrice | number:'1.2-2' }}
+      </p>
+
+      <p>
+        <strong>Available Tickets:</strong>
+        {{ event.availableTickets }}
+      </p>
+
+      <p>
+        <strong>Status:</strong>
+        {{ event.status }}
+      </p>
+
+      <hr>
+
+      <!-- TICKET QUANTITY -->
+      <ion-item>
+        <ion-input
+          type="number"
+          label="Ticket Quantity"
+          labelPlacement="stacked"
+          min="1"
+          [max]="event.availableTickets"
+          [(ngModel)]="quantity">
+        </ion-input>
+      </ion-item>
+
+      <!-- TOTAL AMOUNT -->
+      <h2>
+        Total: ₱{{ totalAmount | number:'1.2-2' }}
+      </h2>
+
+      <!-- BOOKING SUCCESS -->
+      <ion-text color="success" *ngIf="successMessage">
+        <p>{{ successMessage }}</p>
+      </ion-text>
+
+      <!-- BOOK TICKETS -->
+      <ion-button
+        expand="block"
+        color="success"
+        [disabled]="event.status !== 'Upcoming' || event.availableTickets <= 0"
+        (click)="bookTicket()">
+
+        Book Tickets
+
+      </ion-button>
+
+    </ion-card-content>
+
+  </ion-card>
+
+</ion-content>

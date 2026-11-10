@@ -1,0 +1,60 @@
+
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Add Booking</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <form [formGroup]="form" (ngSubmit)="addBooking()">
+
+    <ion-item>
+      <ion-input
+        type="number"
+        label="User ID"
+        labelPlacement="floating"
+        formControlName="userId">
+      </ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-input
+        type="number"
+        label="Event ID"
+        labelPlacement="floating"
+        formControlName="eventId">
+      </ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-input
+        type="number"
+        label="Number of Tickets"
+        labelPlacement="floating"
+        formControlName="quantity">
+      </ion-input>
+    </ion-item>
+
+    <ion-button
+      expand="block"
+      type="submit"
+      class="ion-margin-top">
+
+      Create Booking
+
+    </ion-button>
+
+    <ion-button
+      expand="block"
+      fill="outline"
+      color="medium"
+      routerLink="/bookings">
+
+      Back
+
+    </ion-button>
+
+  </form>
+
+</ion-content>

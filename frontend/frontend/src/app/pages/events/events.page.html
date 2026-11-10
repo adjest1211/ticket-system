@@ -1,0 +1,105 @@
+
+<ion-header>
+  <ion-toolbar>
+
+    <ion-title>Manage Events</ion-title>
+
+    <ion-buttons slot="end">
+      <ion-button routerLink="/dashboard">
+        Dashboard
+      </ion-button>
+    </ion-buttons>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <h2>Event Management</h2>
+
+  <ion-button
+    expand="block"
+    routerLink="/event-form">
+    Add New Event
+  </ion-button>
+
+  <ion-button
+    expand="block"
+    fill="outline"
+    (click)="loadEvents()">
+    Refresh Events
+  </ion-button>
+
+  <div *ngIf="events.length === 0">
+    <p class="ion-text-center">
+      No events found.
+    </p>
+  </div>
+
+  <ion-card *ngFor="let event of events">
+
+    <ion-card-header>
+
+      <ion-card-title>
+        {{ event.eventName }}
+      </ion-card-title>
+
+    </ion-card-header>
+
+    <ion-card-content>
+
+      <p>
+        <strong>Description:</strong>
+        {{ event.description }}
+      </p>
+
+      <p>
+        <strong>Venue:</strong>
+        {{ event.venue }}
+      </p>
+
+      <p>
+        <strong>Start Date:</strong>
+        {{ event.startDateTime | date:'medium' }}
+      </p>
+
+      <p>
+        <strong>End Date:</strong>
+        {{ event.endDateTime | date:'medium' }}
+      </p>
+
+      <p>
+        <strong>Ticket Price:</strong>
+        ₱{{ event.ticketPrice }}
+      </p>
+
+      <p>
+        <strong>Available Tickets:</strong>
+        {{ event.availableTickets }}
+      </p>
+
+      <p>
+        <strong>Status:</strong>
+        <ion-badge>
+          {{ event.status }}
+        </ion-badge>
+      </p>
+
+      <ion-button
+        expand="block"
+        [routerLink]="['/event-form', event.eventId]">
+        Edit Event
+      </ion-button>
+
+      <ion-button
+        expand="block"
+        color="danger"
+        (click)="deleteEvent(event.eventId)">
+        Delete Event
+      </ion-button>
+
+    </ion-card-content>
+
+  </ion-card>
+
+</ion-content>

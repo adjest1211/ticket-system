@@ -1,0 +1,65 @@
+
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Customer Registration</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <h1>Create Account</h1>
+  <p>Register to start booking event tickets.</p>
+
+  <ion-item>
+    <ion-input
+      label="Full Name"
+      labelPlacement="stacked"
+      [(ngModel)]="fullName">
+    </ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-input
+      label="Email"
+      labelPlacement="stacked"
+      type="email"
+      [(ngModel)]="email">
+    </ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-input
+      label="Password"
+      labelPlacement="stacked"
+      type="password"
+      [(ngModel)]="password">
+    </ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-input
+      label="Confirm Password"
+      labelPlacement="stacked"
+      type="password"
+      [(ngModel)]="confirmPassword">
+    </ion-input>
+  </ion-item>
+
+  <ion-text color="danger" *ngIf="errorMessage">
+    <p>{{ errorMessage }}</p>
+  </ion-text>
+
+  <ion-text color="success" *ngIf="successMessage">
+    <p>{{ successMessage }}</p>
+  </ion-text>
+
+  <ion-button expand="block" (click)="register()">
+    Register
+  </ion-button>
+
+  <p class="ion-text-center">
+    Already have an account?
+    <a routerLink="/login">Login here</a>
+  </p>
+
+</ion-content>

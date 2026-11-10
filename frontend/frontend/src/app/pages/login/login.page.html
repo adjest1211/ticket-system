@@ -1,0 +1,64 @@
+
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <h1>Event Ticketing System</h1>
+  <p>Login to your account</p>
+
+  <ion-item>
+    <ion-label position="stacked">Login As</ion-label>
+    <select [(ngModel)]="loginType">
+      <option value="customer">Customer</option>
+      <option value="admin">Admin</option>
+    </select>
+  </ion-item>
+
+  <div *ngIf="loginType === 'admin'">
+    <ion-item>
+      <ion-input
+        label="Username"
+        labelPlacement="stacked"
+        [(ngModel)]="username">
+      </ion-input>
+    </ion-item>
+  </div>
+
+  <div *ngIf="loginType === 'customer'">
+    <ion-item>
+      <ion-input
+        label="Email"
+        labelPlacement="stacked"
+        type="email"
+        [(ngModel)]="email">
+      </ion-input>
+    </ion-item>
+  </div>
+
+  <ion-item>
+    <ion-input
+      label="Password"
+      labelPlacement="stacked"
+      type="password"
+      [(ngModel)]="password">
+    </ion-input>
+  </ion-item>
+
+  <ion-text color="danger" *ngIf="errorMessage">
+    <p>{{ errorMessage }}</p>
+  </ion-text>
+
+  <ion-button expand="block" (click)="login()">
+    Login
+  </ion-button>
+
+  <p class="ion-text-center">
+    Don't have an account?
+    <a routerLink="/register">Register here</a>
+  </p>
+
+</ion-content>

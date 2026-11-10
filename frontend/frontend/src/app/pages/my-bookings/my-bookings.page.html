@@ -1,0 +1,71 @@
+
+<ion-header>
+  <ion-toolbar>
+    <ion-title>My Bookings</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <ion-button expand="block" routerLink="/customer-home">
+    Back to Events
+  </ion-button>
+
+  <ion-button expand="block" fill="outline" (click)="loadBookings()">
+    Refresh
+  </ion-button>
+
+  <div *ngIf="bookings.length === 0">
+    <p class="ion-text-center">
+      You don't have any bookings yet.
+    </p>
+  </div>
+
+  <ion-card *ngFor="let booking of bookings">
+
+    <ion-card-header>
+      <ion-card-title>
+        {{ booking.eventName || ('Booking #' + booking.bookingId) }}
+      </ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+
+      <p>
+        <strong>Booking ID:</strong>
+        {{ booking.bookingId }}
+      </p>
+
+      <p>
+        <strong>Quantity:</strong>
+        {{ booking.quantity }}
+      </p>
+
+      <p>
+        <strong>Total:</strong>
+        ₱{{ booking.totalAmount }}
+      </p>
+
+      <p>
+        <strong>Booking Date:</strong>
+        {{ booking.bookingDate | date:'medium' }}
+      </p>
+
+      <p>
+        <strong>Status:</strong>
+        <ion-badge>{{ booking.status }}</ion-badge>
+      </p>
+
+      <ion-button
+        expand="block"
+        color="danger"
+        [disabled]="booking.status === 'Cancelled'"
+        (click)="cancelBooking(booking.bookingId)">
+        Cancel Booking
+      </ion-button>
+
+    </ion-card-content>
+
+  </ion-card>
+
+</ion-content>

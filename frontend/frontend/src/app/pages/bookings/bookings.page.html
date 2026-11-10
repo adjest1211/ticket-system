@@ -1,0 +1,98 @@
+
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Manage Bookings</ion-title>
+
+    <ion-buttons slot="end">
+      <ion-button routerLink="/dashboard">
+        Dashboard
+      </ion-button>
+    </ion-buttons>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <ion-button expand="block" fill="outline" (click)="loadBookings()">
+    Refresh Bookings
+  </ion-button>
+
+  <div *ngIf="bookings.length === 0">
+    <p class="ion-text-center">No bookings found.</p>
+  </div>
+
+  <ion-card *ngFor="let booking of bookings">
+
+    <ion-card-header>
+      <ion-card-title>
+        Booking #{{ booking.bookingId }}
+      </ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+
+      <p>
+        <strong>Customer:</strong>
+        {{ booking.fullName || booking.userId }}
+      </p>
+
+      <p>
+        <strong>Event:</strong>
+        {{ booking.eventName || booking.eventId }}
+      </p>
+
+      <p>
+        <strong>Quantity:</strong>
+        {{ booking.quantity }}
+      </p>
+
+      <p>
+        <strong>Total Amount:</strong>
+        ₱{{ booking.totalAmount }}
+      </p>
+
+      <p>
+        <strong>Booking Date:</strong>
+        {{ booking.bookingDate | date:'medium' }}
+      </p>
+
+      <p>
+        <strong>Status:</strong>
+        <ion-badge>{{ booking.status }}</ion-badge>
+      </p>
+
+      <ion-item>
+        <ion-label>Booking Status</ion-label>
+
+        <ion-select
+          [value]="booking.status"
+          (ionChange)="updateStatus(booking.bookingId, $event.detail.value)">
+
+          <ion-select-option value="Pending">
+            Pending
+          </ion-select-option>
+
+          <ion-select-option value="Confirmed">
+            Confirmed
+          </ion-select-option>
+
+          <ion-select-option value="Cancelled">
+            Cancelled
+          </ion-select-option>
+
+        </ion-select>
+      </ion-item>
+
+      <ion-button
+        expand="block"
+        color="danger"
+        (click)="deleteBooking(booking.bookingId)">
+        Delete Booking
+      </ion-button>
+
+    </ion-card-content>
+
+  </ion-card>
+
+</ion-content>

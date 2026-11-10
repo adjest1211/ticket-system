@@ -1,0 +1,119 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Dashboard</ion-title>
+
+    <ion-buttons slot="end">
+      <ion-button color="light" (click)="logout()">
+        Logout
+      </ion-button>
+    </ion-buttons>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <h2>Event Ticketing Dashboard</h2>
+
+  <!-- DASHBOARD STATISTICS -->
+  <ion-grid>
+    <ion-row>
+
+      <ion-col size="12" size-md="6">
+        <ion-card color="primary">
+          <ion-card-header>
+            <ion-card-title>Total Events</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <h1>{{ dashboard.totalEvents }}</h1>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+
+      <ion-col size="12" size-md="6">
+        <ion-card color="success">
+          <ion-card-header>
+            <ion-card-title>Total Bookings</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <h1>{{ dashboard.totalBookings }}</h1>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+
+      <ion-col size="12" size-md="6">
+        <ion-card color="tertiary">
+          <ion-card-header>
+            <ion-card-title>Total Users</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <h1>{{ dashboard.totalUsers }}</h1>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+
+      <ion-col size="12" size-md="6">
+        <ion-card color="warning">
+          <ion-card-header>
+            <ion-card-title>Confirmed Tickets</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <h1>{{ dashboard.confirmedTickets }}</h1>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+
+    </ion-row>
+  </ion-grid>
+
+  <hr>
+
+  <!-- EVENT MANAGEMENT BUTTONS -->
+  <h2>Event Management</h2>
+
+  <ion-button
+    expand="block"
+    color="primary"
+    routerLink="/events">
+    View All Events
+  </ion-button>
+
+  <ion-button
+    expand="block"
+    color="success"
+    routerLink="/event-form">
+    + Add New Event
+  </ion-button>
+
+  <hr>
+
+  <!-- BOOKING MANAGEMENT BUTTONS -->
+  <h2>Booking Management</h2>
+
+  <ion-button
+    expand="block"
+    color="primary"
+    routerLink="/bookings">
+    View All Bookings
+  </ion-button>
+
+  <ion-button
+    expand="block"
+    color="success"
+    routerLink="/booking-form">
+    + Add New Booking
+  </ion-button>
+
+  <hr>
+
+  <!-- REFRESH DASHBOARD -->
+  <h2>Dashboard Controls</h2>
+
+  <ion-button
+    expand="block"
+    color="medium"
+    (click)="loadDashboard()">
+    Refresh Dashboard
+  </ion-button>
+
+</ion-content>
